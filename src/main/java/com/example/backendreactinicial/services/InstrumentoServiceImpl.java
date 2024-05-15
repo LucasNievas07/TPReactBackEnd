@@ -15,14 +15,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InstrumentoServiceImp extends BaseServiceImp<Instrumento, Long> implements InstrumentoService{
+public class InstrumentoServiceImpl extends BaseServiceImpl<Instrumento, Long> implements InstrumentoService{
     @Autowired
     private InstrumentoRepository instrumentoRepository;
 
     @Autowired
     private EntityManager entityManager;
 
-    public InstrumentoServiceImp(BaseRepository<Instrumento, Long> baseRepository, InstrumentoRepository instrumentoRepository) {
+    public InstrumentoServiceImpl(BaseRepository<Instrumento, Long> baseRepository, InstrumentoRepository instrumentoRepository) {
         super(baseRepository);
         this.instrumentoRepository = instrumentoRepository;
     }

@@ -1,15 +1,13 @@
 package com.example.backendreactinicial.controllers;
 
 import com.example.backendreactinicial.entities.Base;
-import com.example.backendreactinicial.services.BaseServiceImp;
+import com.example.backendreactinicial.services.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
-
-public abstract class BaseControllerImp<E extends Base, S extends BaseServiceImp<E, Long>> implements BaseController<E, Long> {
+public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long> {
     @Autowired
     protected S servicio;
 

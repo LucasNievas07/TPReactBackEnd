@@ -1,7 +1,7 @@
 package com.example.backendreactinicial.controllers;
 
 import com.example.backendreactinicial.entities.Instrumento;
-import com.example.backendreactinicial.services.InstrumentoServiceImp;
+import com.example.backendreactinicial.services.InstrumentoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/instrumento")
-public class InstrumentoController extends BaseControllerImp<Instrumento, InstrumentoServiceImp>{
+public class InstrumentoController extends BaseControllerImpl<Instrumento, InstrumentoServiceImpl> {
 
     @GetMapping("/masVendidos")
     public ResponseEntity<?> getTopMasVendidos(){
