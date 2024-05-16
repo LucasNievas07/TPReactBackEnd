@@ -17,11 +17,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Pedido extends Base{
+public class Pedido extends Base {
 
     private LocalDate fechaPedido;
     private Double totalPedido;
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // Usamos cascade
     @JsonBackReference
     private List<PedidoDetalle> detalles;
 
