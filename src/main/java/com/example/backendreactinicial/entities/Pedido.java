@@ -9,7 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -17,13 +18,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Pedido extends Base {
-
-    private LocalDate fechaPedido;
+public class Pedido extends Base{
+    private Date fechaPedido;
     private Double totalPedido;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // Usamos cascade
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonBackReference
-    private List<PedidoDetalle> detalles;
-
+    private List<PedidoDetalle> detalles = new ArrayList<>();
 }

@@ -1,4 +1,3 @@
-// UsuarioController.java
 package com.example.backendreactinicial.controllers;
 
 import com.example.backendreactinicial.entities.Usuario;

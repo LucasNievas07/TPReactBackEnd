@@ -9,14 +9,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class PedidoDetalle extends Base{
-
     private Integer cantidad;
 
     @ManyToOne
@@ -27,5 +25,4 @@ public class PedidoDetalle extends Base{
     @ManyToOne
     @JoinColumn(name = "instrumento_id")
     private Instrumento instrumento;
-
 }

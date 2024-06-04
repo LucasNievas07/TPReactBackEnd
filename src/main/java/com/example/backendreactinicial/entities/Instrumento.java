@@ -23,9 +23,9 @@ public class Instrumento extends Base{
     private String modelo;
     @Column(length = 1000)
     private String imagen;
-    private String precio;
+    private Double precio;
     private String costoEnvio;
-    private String cantidadVendida;
+    private Integer cantidadVendida;
     @Column(length = 1000)
     private String descripcion;
 
@@ -33,6 +33,6 @@ public class Instrumento extends Base{
     private Categoria categoria;
 
     @OneToMany(mappedBy = "instrumento")
-    @JsonBackReference  // Esta anotación debería estar aquí
+    @JsonBackReference
     private List<PedidoDetalle> pedidosDetalles;
 }
