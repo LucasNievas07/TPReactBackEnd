@@ -28,7 +28,6 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
     @Override
     public Usuario save(Usuario entity) throws Exception {
         try {
-            // Encriptar la clave antes de guardar
             entity.setClave(encryptPassword(entity.getClave()));
             return super.save(entity);
         } catch (Exception e) {

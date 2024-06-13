@@ -50,7 +50,6 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido, Long> implements 
             Instrumento instrumento = instrumentoRepository.findById(detalle.getInstrumento().getId())
                     .orElseThrow(() -> new RuntimeException("Instrumento no encontrado"));
 
-            // Costo de envío como double
             double costoEnvio;
             try {
                 costoEnvio = "G".equals(instrumento.getCostoEnvio()) ? 0.0 : Double.parseDouble(instrumento.getCostoEnvio());
@@ -60,7 +59,6 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido, Long> implements 
 
             totalPedido += (instrumento.getPrecio() * detalle.getCantidad()) + costoEnvio;
 
-            // Sumar la cantidad vendida al instrumento
             instrumento.setCantidadVendida(instrumento.getCantidadVendida() + detalle.getCantidad());
             instrumentoRepository.save(instrumento);
 
@@ -75,8 +73,6 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido, Long> implements 
         pedido.setTotalPedido(totalPedido);
         return pedidoRepository.save(pedido);
     }
-
-
 
     @Override
     public List<PedidosPorMesYAnio> getPedidosAgrupadosPorMesYAnio(Date fechaDesde, Date fechaHasta) {

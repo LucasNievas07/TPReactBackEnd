@@ -22,7 +22,7 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         try {
             List<E> entities = baseRepository.findAll();
             return entities.stream()
-                    .filter(entity -> !entity.isEliminado()) // Filtra las entidades eliminadas
+                    .filter(entity -> !entity.isEliminado())
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -75,8 +75,8 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
             Optional<E> entityOptional = baseRepository.findById(id);
             if (entityOptional.isPresent()) {
                 E entity = entityOptional.get();
-                entity.setEliminado(true); // Actualiza el campo eliminado a true
-                baseRepository.save(entity); // Guarda la entidad actualizada
+                entity.setEliminado(true);
+                baseRepository.save(entity);
                 return true;
             } else {
                 throw new Exception("Entity not found");

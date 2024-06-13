@@ -26,18 +26,15 @@ public class PdfService {
             PdfDocument pdfDoc = new PdfDocument(writer);
             Document document = new Document(pdfDoc, PageSize.A4);
 
-            // Agregar título
             document.add(new Paragraph(instrumento.getInstrumento())
                     .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD))
                     .setFontSize(24)
                     .setTextAlignment(TextAlignment.CENTER));
 
-            // Agregar imagen con tamaño fijo
             Image img = new Image(ImageDataFactory.create(instrumento.getImagen()));
-            float maxWidth = 250; // Ancho máximo en puntos
-            float maxHeight = 250; // Alto máximo en puntos
+            float maxWidth = 250;
+            float maxHeight = 250;
 
-            // Ajustar la imagen para que se mantenga dentro de los límites de tamaño máximo
             float originalWidth = img.getImageWidth();
             float originalHeight = img.getImageHeight();
             float aspectRatio = originalWidth / originalHeight;
@@ -57,7 +54,6 @@ public class PdfService {
 
             document.add(img.setHorizontalAlignment(HorizontalAlignment.CENTER));
 
-            // Agregar detalles
             document.add(new Paragraph("Marca: " + instrumento.getMarca())
                     .setFont(PdfFontFactory.createFont(StandardFonts.HELVETICA))
                     .setFontSize(16));
