@@ -77,6 +77,7 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido, Long> implements 
     }
 
 
+
     @Override
     public List<PedidosPorMesYAnio> getPedidosAgrupadosPorMesYAnio(Date fechaDesde, Date fechaHasta) {
         String query = "SELECT new com.example.backendreactinicial.entities.DTO.PedidosPorMesYAnio(CONCAT(FUNCTION('MONTH', p.fechaPedido), '-', FUNCTION('YEAR', p.fechaPedido)), COUNT(p)) " +

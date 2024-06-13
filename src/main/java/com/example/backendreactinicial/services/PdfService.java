@@ -10,8 +10,8 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.UnitValue;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -32,9 +32,30 @@ public class PdfService {
                     .setFontSize(24)
                     .setTextAlignment(TextAlignment.CENTER));
 
-            // Agregar imagen
+            // Agregar imagen con tamaño fijo
             Image img = new Image(ImageDataFactory.create(instrumento.getImagen()));
-            document.add(img.setWidth(UnitValue.createPercentValue(50)));
+            float maxWidth = 250; // Ancho máximo en puntos
+            float maxHeight = 250; // Alto máximo en puntos
+
+            // Ajustar la imagen para que se mantenga dentro de los límites de tamaño máximo
+            float originalWidth = img.getImageWidth();
+            float originalHeight = img.getImageHeight();
+            float aspectRatio = originalWidth / originalHeight;
+
+            if (originalWidth > maxWidth || originalHeight > maxHeight) {
+                if (originalWidth / maxWidth > originalHeight / maxHeight) {
+                    img.setWidth(maxWidth);
+                    img.setHeight(maxWidth / aspectRatio);
+                } else {
+                    img.setHeight(maxHeight);
+                    img.setWidth(maxHeight * aspectRatio);
+                }
+            } else {
+                img.setWidth(originalWidth);
+                img.setHeight(originalHeight);
+            }
+
+            document.add(img.setHorizontalAlignment(HorizontalAlignment.CENTER));
 
             // Agregar detalles
             document.add(new Paragraph("Marca: " + instrumento.getMarca())
